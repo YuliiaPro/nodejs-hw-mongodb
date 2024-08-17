@@ -6,7 +6,11 @@ import path from 'node:path';
 import fs from 'node:fs/promises';
 import { randomBytes } from 'crypto';
 import { UsersCollection } from '../db/models/users.js';
-import { FIFTEEN_MINUTES, ONE_DAY, TEMPLATES_DIR } from '../constants/index.js';
+import {
+  FIFTEEN_MINUTES,
+  ONE_MONTH,
+  TEMPLATES_DIR,
+} from '../constants/index.js';
 import { SessionsCollection } from '../db/models/session.js';
 import { SMTP } from '../constants/index.js';
 import { env } from '../utils/env.js';
@@ -32,7 +36,7 @@ const createSession = () => {
     accessToken,
     refreshToken,
     accessTokenValidUntil: new Date(Date.now() + FIFTEEN_MINUTES),
-    refreshTokenValidUntil: new Date(Date.now() + ONE_DAY),
+    refreshTokenValidUntil: new Date(Date.now() + ONE_MONTH),
   };
 };
 
