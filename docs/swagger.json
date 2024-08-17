@@ -232,15 +232,10 @@
                       "personal"
                     ]
                   },
-                  "userId": {
-                    "description": "Contact's user id",
-                    "type": "object",
-                    "example": "66b85a667f1774daa7289340"
-                  },
                   "photo": {
                     "description": "Link to contact's photo",
                     "type": "string",
-                    "example": "<https://res.cloudinary.com/dguwxf5ek/image/upload/v1723358104/ronoznm4nnfejcpot7bx.jpg>"
+                    "format": "binary"
                   }
                 }
               }
@@ -370,9 +365,9 @@
         "tags": [
           "Contacts"
         ],
-        "summary": "Patch contact by id",
+        "summary": "Patch contact",
         "operationId": "updateContact",
-        "description": "Update contact by id",
+        "description": "Patch a contact with payload",
         "security": [
           {
             "bearerAuth": []
@@ -407,7 +402,8 @@
                   },
                   "email": {
                     "description": "Contact's email.",
-                    "type": "string"
+                    "type": "string",
+                    "example": "kateryna@example.com"
                   },
                   "isFavourite": {
                     "description": "Is the contact a favorite?",
@@ -421,14 +417,12 @@
                       "work",
                       "home",
                       "personal"
-                    ],
-                    "example": "work"
+                    ]
                   },
                   "photo": {
                     "description": "Link to contact's photo",
                     "type": "string",
-                    "format": "binary",
-                    "example": "<https://res.cloudinary.com/dguwxf5ek/image/upload/v1723358104/ronoznm4nnfejcpot7bx.jpg>"
+                    "format": "binary"
                   }
                 }
               }
@@ -437,11 +431,16 @@
         },
         "responses": {
           "200": {
-            "description": "Patch contact by id",
+            "description": "Creates a contact",
             "content": {
-              "multipart/form-data": {
+              "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -449,7 +448,7 @@
                     },
                     "message": {
                       "type": "string",
-                      "example": "Successfully patched a contact!!"
+                      "example": "Successfully patched a contact!"
                     },
                     "data": {
                       "type": "object",
@@ -617,7 +616,6 @@
           "photo": {
             "description": "Link to contact's photo",
             "type": "string",
-            "format": "binary",
             "example": "<https://res.cloudinary.com/dguwxf5ek/image/upload/v1723358104/ronoznm4nnfejcpot7bx.jpg>"
           }
         }
