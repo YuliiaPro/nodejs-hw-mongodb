@@ -389,11 +389,57 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "description": "Contact's name",
+                    "type": "string",
+                    "example": "Kateryna Povalenko"
+                  },
+                  "phoneNumber": {
+                    "description": "Contact's phone number",
+                    "type": "string",
+                    "example": 380000000005
+                  },
+                  "email": {
+                    "description": "Contact's email.",
+                    "type": "string"
+                  },
+                  "isFavourite": {
+                    "description": "Is the contact a favorite?",
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "contactType": {
+                    "description": "Contact's type",
+                    "type": "string",
+                    "enum": [
+                      "work",
+                      "home",
+                      "personal"
+                    ],
+                    "example": "work"
+                  },
+                  "photo": {
+                    "description": "Link to contact's photo",
+                    "type": "string",
+                    "format": "binary",
+                    "example": "<https://res.cloudinary.com/dguwxf5ek/image/upload/v1723358104/ronoznm4nnfejcpot7bx.jpg>"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Patch contact by id",
             "content": {
-              "application/json": {
+              "multipart/form-data": {
                 "schema": {
                   "type": "object",
                   "properties": {
@@ -568,14 +614,10 @@
               "personal"
             ]
           },
-          "userId": {
-            "description": "Contact's user id",
-            "type": "string",
-            "example": "66b85a667f1774daa7289340"
-          },
           "photo": {
             "description": "Link to contact's photo",
             "type": "string",
+            "format": "binary",
             "example": "<https://res.cloudinary.com/dguwxf5ek/image/upload/v1723358104/ronoznm4nnfejcpot7bx.jpg>"
           }
         }
